@@ -5,4 +5,4 @@ Classification_Pathways.py and Classification_Enzymes.py aim to preprocess the o
 
 Annotation_Enzymes.py is the main script for annotating the text, that is using dictionary searching and regular expressions to match enyzmes in the text.
 
-Ann_Abbre.py is updated annotation pipeline which can also annotate the abbreviations of enzymes.
+Ann_Abbre.py is the updated annotation pipeline which can also annotate the abbreviations of enzymes.
