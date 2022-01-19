@@ -132,7 +132,7 @@ def search_ase(text, word):
         for item in search_list:
             pstart = text.lower().find(item.lower())
             if pstart >= 0 and (pstart == 0 or text[pstart-1] == ' ' or text[pstart-1] == ':'): #text.lower().split(): # greedy 
-                if len(item) > maxl :
+                if len(item) > maxl:
                     maxl = len(item)
                     entity = text[pstart : pstart+maxl]
                     phrase = text[pstart :]
@@ -149,27 +149,36 @@ def search_ase(text, word):
             end = start + len(entity)
             words = text.lower().split()
             if start - 1 >= 0 and oritext[start-1] == '-':
-                index = words.index(entity.split()[-1].lower())
-                index = index - len(entity.split()) + 1
+                index = 0
+                for index in range(len(words)):
+                    lEntity = len(entity.split())
+                    if ' '.join(words[index:index+lEntity]) == entity.lower():
+                        break
+                #index = words.index(entity.split()[-1].lower())
+                #index = index - len(entity.split()) + 1
                 if words[index-1][-1] != ')' or (words[index-1][-1] == ')' and re.search('[(].*[)]',words[index-1])):
                     start -= (len(words[index-1])+1)
                     entity = text[start : end]
-                    if entity[0] in end_word:
+                    if entity[0] == '(' and not re.match('[(].*[)]',entity):#')' not in entity:
                         entity = entity[1:]
                         start += 1
                     end = start+len(entity)+len(words[index-1])+1
                     isEC = False
             if end < len(text) and oritext[end] == '-':
-                index = words.index(entity.split()[-1].lower())
+                for index in range(len(words)):
+                    lEntity = len(entity.split())
+                    if ' '.join(words[index:index+lEntity]) == entity.lower():
+                        break
+                index = index + lEntity -1
+                #index = words.index(entity.split()[-1].lower())
                 if re.match('\d|(.*)DNA$|(.*)RNA$', words[index+1]) or words[index+1] in pri:
                     end = start+len(entity)+len(words[index+1])+1
                     entity = text[start : end]
-                    entity = entity.strip(',').strip(']').strip(')').strip(',')
-                    #print(entity)
+                    entity = entity.strip(',').strip(']').strip(')').strip(',').strip(';')
                     isEC = False
-            text = text[(start + len(entity) + 1):].strip()#text[0 : start].strip() + ' ' + text[(start + len(entity) + 1) : len(text)].strip() # There is least one space between two words.
+            text = text[(start + len(entity) + 1):].strip()
             oritext = oritext[(start + len(entity) + 1):].strip()
-    else: # we assume that enzymes are all the types (ending with existed 'ase') which can be find inside the kegg, if it not existed in the kegg, we do not use RE to check the text.
+    else:
         entity = None
     return entity, text, 'EC numbers'
 
@@ -198,7 +207,7 @@ def search_pattern(text, word, matchword):
             words.append(i[i.find('/')+1:])
         for item in search_list:
             pstart = text.lower().find(item.lower())
-            if pstart >= 0 and item.split()[0].lower() in words: # greedy
+            if  pstart >= 0 and (pstart == 0 or text[pstart-1] == ' ' or text[pstart-1] == ':'): # greedy
                 if len(item) > maxl:
                     maxl = len(item)
                     entity = text[pstart : pstart+maxl]
@@ -211,16 +220,39 @@ def search_pattern(text, word, matchword):
                     entity = None
                     break
         if entity != None:
-            global within_list_num
-            within_list_num += 1
-            words = text.lower().split()
             start = text.lower().find(entity.lower())
+            end = start + len(entity)
+            words = text.lower().split()
             if start - 1 >= 0 and oritext[start-1] == '-':
-                index = words.index(entity.split()[0].lower())
-                start -= (len(words[index-1])+1)
-                entity = text[start : start+len(entity)+len(words[index-1])+1] 
-                isEC = False
-            text = text[(start + len(entity) + 1):].strip()#text[0 : start].strip()+ ' ' + text[(start + len(entity) + 1) : len(text)].strip()
+                index = 0
+                for index in range(len(words)):
+                    lEntity = len(entity.split())
+                    if ' '.join(words[index:index+lEntity]) == entity.lower():
+                        break
+                #index = words.index(entity.split()[-1].lower())
+                #index = index - len(entity.split()) + 1
+                if words[index-1][-1] != ')' or (words[index-1][-1] == ')' and re.search('[(].*[)]',words[index-1])):
+                    start -= (len(words[index-1])+1)
+                    entity = text[start : end]
+                    if entity[0] == '(' and not re.match('[(].*[)]',entity):#')' not in entity:#in end_word:
+                        entity = entity[1:]
+                        start += 1
+                    end = start+len(entity)+len(words[index-1])+1
+                    isEC = False
+            if end < len(text) and oritext[end] == '-':
+                for index in range(len(words)):
+                    lEntity = len(entity.split())
+                    if ' '.join(words[index:index+lEntity]) == entity.lower():
+                        break
+                index = index + lEntity -1
+                #index = words.index(entity.split()[-1].lower())
+                if re.match('\d|(.*)DNA$|(.*)RNA$', words[index+1]) or words[index+1] in pri:
+                    end = start+len(entity)+len(words[index+1])+1
+                    entity = text[start : end]
+                    entity = entity.strip(',').strip(']').strip(')').strip(',').strip(';')
+                    isEC = False
+            
+            text = text[(start + len(entity) + 1):].strip()#text[0 : start].strip() + ' ' + text[(start + len(entity) + 1) : len(text)].strip() # There is least one space between two words.
             oritext = oritext[(start + len(entity) + 1):].strip()
         return entity, text, 'EC numbers'
     else:
@@ -253,17 +285,17 @@ def search_enzyme(word):
 
 def annotation_dictionary():
     dict={'text':'', 
-                 'infons': {'identifier':'',
-                            'type':'enzyme',
-                            'annotator':'m.wang21@fuzzysearch',
-                            'updated_at':time.strftime("%Y-%m-%dT%H:%M:%SZ",time.localtime())
-                            },
-                 'id':'',
-                 'locations':[{'length':'',
-                              'offset':''
-                              }]
+          'infons': {'identifier':'',
+                     'type':'enzyme',
+                     'annotator':'m.wang21@fuzzysearch',
+                     'updated_at':time.strftime("%Y-%m-%dT%H:%M:%SZ",time.localtime())
+                    },
+          'id':'',
+          'locations':[{'length':'',
+                        'offset':''
+                      }]
                               
-                }
+          }
     return dict
 
 def annotate_corpus(ider, entity, originaloffset, text, originaltext, section, annotation):
@@ -272,6 +304,7 @@ def annotate_corpus(ider, entity, originaloffset, text, originaltext, section, a
     global id_num
     global isEC
     global num
+    #print(entity)
     if entity not in dict_entities:
         dict_entities[entity] = 0
     else:
@@ -345,10 +378,6 @@ def annotate_corpus(ider, entity, originaloffset, text, originaltext, section, a
             annotation_dict['infons']['identifier'] = 'fuzzy_search'
             kw_num += 1
         entity = originaltext[position : (position+length)]
-        if position - 1 >= 0 and originaltext[position-1] == '-':
-            firstword = entity.split()[0]
-            
-        
         print(entity)
         annotation_dict['text'] = entity
         annotation_dict['locations'][0]['length'] = len(entity)
@@ -398,15 +427,16 @@ if __name__ == "__main__":
     kw_num = 0   
     num = 0
      
-    for filename in os.listdir('Auto-CORPus/Annotated_Corpus/MWAS-Abbre'):
+    for filename in os.listdir('Auto-CORPus/Annotated_Corpus/Microbiome-Abbre'):
         if re.match('(.*).json$', filename):
-            file_path = 'Auto-CORPus/Annotated_Corpus/MWAS-Abbre/' + filename
+            file_path = 'Auto-CORPus/Annotated_Corpus/Microbiome-Abbre/' + filename
             with open(file_path, 'r', encoding = 'utf-8') as file: # windows 10 has the 'gbk' codec problem without encoding = 'utf-8'
                 fulltext = json.load(file)    
             file.close()
-            print(filename)
+            #print(filename)
         else:
             continue
+        flag = False
         cont = 0    
         for text in fulltext['documents'][0]['passages']:
             hyphen_Location = re.finditer('-', text['text'].replace('\n', ' '))
@@ -431,15 +461,18 @@ if __name__ == "__main__":
                             if item != None:
                                 annotation.append(item)
                             sentence = content 
-
+            for i in range(0, len(annotation)):
+                annotation[i]['id'] = i+1
+            if len(annotation) > 0:
+                flag = True
             fulltext['documents'][0]['passages'][cont]['annotations'] = annotation
             cont += 1
 
         enzyme_num += id_num
-
-        writein_path = "Auto-CORPus/Annotated_Corpus/MWAS-hyphen/" + filename.replace('_bioc_annotated.json', '_hyphen.json')
-        writein = open(writein_path, 'w')
-        json.dump(fulltext, writein, indent = 4)
-        writein.close()      
+        if flag == True:
+            writein_path = "Auto-CORPus/Annotated_Corpus/Microbiome-hyphen/" + filename #.replace('_bioc_annotated.json', '_hyphen.json')
+            writein = open(writein_path, 'w')
+            json.dump(fulltext, writein, indent = 4)
+            writein.close()      
     print('Time is {}.'.format(time.time()-start_time))
     print('{} enzymes have been found through fuzzy search.'.format(num))
