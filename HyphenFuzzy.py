@@ -391,12 +391,12 @@ if __name__ == "__main__":
     
     start_time = time.time()
     
-    enzymes_path = ("Auto-CORPus/Classification_without_hyphen.json")
+    enzymes_path = ("Auto-CORPus/Classification_new.json")
     with open(enzymes_path, 'r', encoding = 'utf-8') as enzymes:
         enzymes_dict = json.load(enzymes)
         enzymes.close()
     
-    ec_number_path = ("Auto-CORPus/KEGG_EC_without_hyphen.json")
+    ec_number_path = ("Auto-CORPus/KEGG_EC_new.json")
     with open(ec_number_path, 'r', encoding = 'utf-8') as ec_number:
         ec_number_list = json.load(ec_number)
     ec_number.close()
@@ -419,17 +419,12 @@ if __name__ == "__main__":
     pattern8 = re.compile(r'cytochrome', re.I)
     pattern9 = re.compile(r'(.*)ase$|(.*)ases$')
     
-    within_list_num = 0
-    outside_list_num = 0
-    file_num = 0
     enzyme_num = 0
-    ec_num = 0
-    kw_num = 0   
     num = 0
      
-    for filename in os.listdir('Auto-CORPus/Annotated_Corpus/Microbiome-Abbre'):
+    for filename in os.listdir('Auto-CORPus/Annotated_Corpus/proteomics-Abbre'):
         if re.match('(.*).json$', filename):
-            file_path = 'Auto-CORPus/Annotated_Corpus/Microbiome-Abbre/' + filename
+            file_path = 'Auto-CORPus/Annotated_Corpus/proteomics-Abbre/' + filename
             with open(file_path, 'r', encoding = 'utf-8') as file: # windows 10 has the 'gbk' codec problem without encoding = 'utf-8'
                 fulltext = json.load(file)    
             file.close()
@@ -438,6 +433,7 @@ if __name__ == "__main__":
             continue
         flag = False
         cont = 0    
+        id = 0
         for text in fulltext['documents'][0]['passages']:
             hyphen_Location = re.finditer('-', text['text'].replace('\n', ' '))
             paragraph = text['text'].split('.')
@@ -462,17 +458,18 @@ if __name__ == "__main__":
                                 annotation.append(item)
                             sentence = content 
             for i in range(0, len(annotation)):
-                annotation[i]['id'] = i+1
-            if len(annotation) > 0:
-                flag = True
+                id += 1
+                annotation[i]['id'] = id
+            
             fulltext['documents'][0]['passages'][cont]['annotations'] = annotation
             cont += 1
-
-        enzyme_num += id_num
-        if flag == True:
-            writein_path = "Auto-CORPus/Annotated_Corpus/Microbiome-hyphen/" + filename #.replace('_bioc_annotated.json', '_hyphen.json')
+        
+        enzyme_num += id
+        if id > 0:
+            writein_path = "Auto-CORPus/Annotated_Corpus/proteomics-greek/" + filename #.replace('_bioc_annotated.json', '_hyphen.json')
             writein = open(writein_path, 'w')
             json.dump(fulltext, writein, indent = 4)
             writein.close()      
     print('Time is {}.'.format(time.time()-start_time))
+    print('{} enzymes have been found in the proteomics corpus.'.format(enzyme_num))
     print('{} enzymes have been found through fuzzy search.'.format(num))
