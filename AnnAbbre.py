@@ -122,19 +122,24 @@ def enzyme_ase_list(word):
     
 def part_match(text, keyword, search_list): # search using "re"--before and after
     entity = None
-    words = text.strip().split() #re.split(' ', text.strip())
+    words = text.strip().split()
     index = 0
     text_after = ''
-    #text_before = ''
     for word in words:
-        if word.find(keyword)>=0:
+        if word.lower().find(keyword.lower())>=0:
+            entity = word.strip(':').strip(',').strip('!').strip('?').strip('{').strip('[').strip('(').strip('"').strip('}').strip(']').strip(')').strip('"')
+            if entity[-1] not in end_word and entity[-1] != 's' and index+1 < len(words):
+                pattern = re.compile(r'[(](.*?)[)]', re.I)
+                after_bracket = pattern.match(text[text.lower().find(word.lower())+len(word):])
+                if after_bracket != None and after_bracket.group().strip('(').strip(')') in list_bracket:
+                    entity = entity + ' ' + after_bracket.group()
+                
+                
+            '''
             # Search the words after keyword
             if word[-1] in end_word:
                 entity = word[:-1].strip('{').strip('[').strip('(').strip('(').strip('"')
-                '''
-                if entity[-1] in end_word:
-                    entity = entity[:-1]
-                '''
+                
                 text_after = ' '.join(words[index+1:]).strip()
             elif word[-4:] == 'ases':
                 entity = word.strip('{').strip('[').strip('(').strip('"')
@@ -146,54 +151,71 @@ def part_match(text, keyword, search_list): # search using "re"--before and afte
                 if  after_bracket != None and after_bracket.group().strip('(').strip(')') in list_bracket:
                     entity = entity + ' ' + after_bracket.group()
                     text_after = text_after[after_bracket.end():].strip()
-            #entity = word.strip(':').strip(',').strip('!').strip('?').strip('{').strip('[').strip('(').strip('"').strip('}').strip(']').strip(')').strip('"')
-
+            
+            '''
             # Search the word before keyword
             index_tmp = index
-            for i in range(1, 5):
-                flag = False
-                if word[0] not in end_word and index - i >= 0 and words[index-i].strip('(').strip('[').strip('"') not in nonsense_list:
-                    word_before = words[index-i].strip('(').strip('[').strip('"')
-                    for item in search_list: 
-                        parts = item.split()
-                        for part in parts:
-                            if part == word_before and not re.match('\d+', word_before):
-                                entity = word_before + ' ' + entity
-                                if entity[0] in end_word:
-                                    entity = entity[1:]
-                                del words[index-i]
-                                index_tmp -= 1
-                                flag = True
-                                break
-                        if flag == True:
+            if word[0] not in end_word:
+                for i in range(1, 5):
+                    flag = False
+                    isEndWord = False
+                    if index - i >= 0:
+                        if words[index-i] in end_word:
                             break
-                if flag == False:
-                    break
-            #text_before = ' '.join(words[: index_tmp]).strip()
-                
-            break   
+                        if words[index-i].find('/') >= 0:
+                            words[index-i] = words[index-i][words[index-i].find('/')+1:]
+                            isEndWord = True
+                        if words[index-i][0] == '(' or words[index-i][0] == '[' or words[index-i][0] == '"':
+                            words[index-i] = words[index-i][1:]
+                            isEndWord = True
+                        if words[index-i] not in nonsense_list:
+                            word_before = words[index-i]
+                            if keyword == 'amylase':
+                                print(word_before)
+                            for item in ec_number_list:
+                                parts = item.lower().split()
+                                for part in parts:
+                                    if part == word_before.lower() and not re.match('\d+', word_before):
+                                        entity = word_before + ' ' + entity
+                                        if entity[0] in end_word:
+                                            entity = entity[1:]
+                                        del words[index-i]
+                                        index_tmp -= 1
+                                        flag = True
+                                        break
+                                if flag == True or isEndWord == True:
+                                    break
+                    if flag == False or isEndWord == True:
+                        break
+                break   
         index += 1
-    text = text_after #text_before + ' ' + text_after
-    
+    text = text[text.find(entity)+len(entity):]
     global outside_list_num 
     outside_list_num += 1
+    if keyword == 'amylase':
+        print(text)
     return entity, text, keyword
 
 def search_ase(text, word):  
-    search_list = enzyme_ase_list(word)
+    search_list = enzyme_ase_list(word.lower())
     flag = False # To mark if need to do part_match.
     entity = None
     if search_list:
         maxl = 0
         phrase = ''
+        words = []
+        for i in text.lower().split():
+            if i == '/':
+                continue
+            words.append(i[i.find('/')+1:])
         for item in search_list:
             pstart = text.lower().find(item.lower())
-            #words = [i.strip('{').strip('[').strip('(').strip('(').strip('"') for i in text.split()]
-            if pstart >= 0 and item.split()[0].lower() in text.lower().split(): # greedy 
+            if pstart >= 0 and item.split()[0].lower() in words:
+                # Greedy strategy!
                 if len(item) > maxl:
-                   maxl = len(item)
-                   entity = text[pstart:pstart+maxl]
-                   phrase = text[pstart : len(text)]
+                    maxl = len(item)
+                    entity = text[pstart : pstart+maxl]
+                    phrase = text[pstart :]
         if entity != None:
             words = phrase.split()
             parts = entity.split()
@@ -206,7 +228,7 @@ def search_ase(text, word):
             global within_list_num
             start = text.lower().find(entity.lower())
             #entity = text[start:start + len(entity)]
-            text = text[(start + len(entity) + 1) :].strip()#text[0 : start].strip() + ' ' + text[(start + len(entity) + 1) : len(text)].strip() # There is least one space between two words.
+            text = text[(start + len(entity) + 1):].strip()
             flag = True
             within_list_num += 1
     else: # we assume that enzymes are all the types (ending with existed 'ase') which can be find inside the kegg, if it not existed in the kegg, we do not use RE to check the text.
@@ -217,8 +239,10 @@ def search_ase(text, word):
     return entity, text, 'EC numbers'
 
 def search_pattern(text, word, matchword):
+    entity = None
+    if word.find('/') >= 0:
+        word = word[word.find('/')+1:]
     if matchword == 'other':
-        entity = None
         if word.lower() in enzymes_dict[matchword]:
             entity = word
             start = text.lower().find(word.lower())
@@ -226,16 +250,21 @@ def search_pattern(text, word, matchword):
         return entity, text, 'EC numbers'
     if matchword != 'ase' and matchword != 'other':
         search_list = enzymes_dict[matchword]
-        entity = None
         maxl = 0
         phrase = ''
+        words = []
+        for i in text.lower().split():
+            if i == '/':
+                continue
+            words.append(i[i.find('/')+1:])
         for item in search_list:
             pstart = text.lower().find(item.lower())
-            if pstart>=0 and item.split()[0].lower() in text.lower().split(): # greedy
+            if pstart >= 0 and item.split()[0].lower() in words: 
+                # Greedy strategy!
                 if len(item) > maxl:
-                   maxl = len(item)
-                   entity = text[pstart:pstart+maxl]
-                   phrase = text[pstart : len(text)]
+                    maxl = len(item)
+                    entity = text[pstart : pstart+maxl]
+                    phrase = text[pstart :]
         if entity != None:
             words = phrase.split()
             parts = entity.split()
@@ -247,9 +276,7 @@ def search_pattern(text, word, matchword):
             global within_list_num
             within_list_num += 1
             start = text.lower().find(entity.lower())
-            #entity = text[start:start + len(entity)]
-            text = text[(start + len(entity) + 1) : len(text)].strip()#text[0 : start].strip()+ ' ' + text[(start + len(entity) + 1) : len(text)].strip()
-            
+            text = text[(start + len(entity) + 1):].strip()
         return entity, text, 'EC numbers'
     else:
         return search_ase(text, word.rstrip('s'))
@@ -326,6 +353,7 @@ def annotate_corpus(ider, entity, offset, text, section):
     global kw_num
     global id_num
     id_num += 1
+    '''
     if entity not in dict_entities:
         dict_entities[entity] = 0
     else:
@@ -336,6 +364,8 @@ def annotate_corpus(ider, entity, offset, text, section):
     positions = [item.start() for item in re.finditer(tmp, text.replace('\n',' '))]
     #print (positions)
     offset = offset + positions[dict_entities[entity]]
+    '''
+    offset = offset + text.lower().find(entity.lower())
     annotation_dict = annotation_dictionary()
     annotation_dict['text'] = entity
     annotation_dict['id'] = str(id_num)
@@ -352,14 +382,13 @@ def annotate_corpus(ider, entity, offset, text, section):
 def annotate_abbre(abbre, text, offset, index):
     global id_num
     id_num += 1
-    
-    # Compute the position of current abbre
     if abbre not in dict_entities_abbre:
         dict_entities_abbre[abbre] = 0
     else:
         dict_entities_abbre[abbre] += 1
-    position = [item.start() for item in re.finditer(abbre, text.replace('\n', ' '))]
-    print (abbre+' '+text[position[dict_entities_abbre[abbre]]:position[dict_entities_abbre[abbre]]+len(abbre)])
+    tmp = abbre.replace('(','\(').replace(')','\)').replace('[','\[').replace(']', '\]')
+    position = [item.start() for item in re.finditer(tmp, text.replace('\n', ' '))]
+    #print (abbre+' '+text[position[dict_entities_abbre[abbre]]:position[dict_entities_abbre[abbre]]+len(abbre)])
     offset = offset + position[index]
     
     annotation_dict = annotation_dictionary()
@@ -397,7 +426,7 @@ if __name__ == "__main__":
         
     # if there is a request to give the past time of a verb?
     notase_list = ['release','increase', 'database', 'base', 'disease','decrease', 'case']
-    nonsense_list=['or', 'to', 'in', 'the', 'a', 'on', 'of', 'for', 'at', 'with','and','this','that','these','those','is','are']
+    nonsense_list=['an','or', 'to', 'in', 'the', 'a', 'on', 'of', 'for', 'at', 'with','and','this','that','these','those','is','are', 'enzyme', 'enzymes']#, 'protein']
     end_word = [')', '.', ';', '?', '!', '"', ':', ']', '}', '(', '[', '{',',','/']
     # Patterns used to rematch.
     pattern1 = re.compile(r'complex', re.I)
@@ -408,7 +437,7 @@ if __name__ == "__main__":
     pattern6 = re.compile(r'doxin', re.I)
     pattern7 = re.compile(r'system', re.I)
     pattern8 = re.compile(r'cytochrome', re.I)
-    pattern9 = re.compile(r'(.*)ase$|(.*)ases$')
+    pattern9 = re.compile(r'(.*)ase$|(.*)ases$', re.I)
     
     within_list_num = 0
     outside_list_num = 0
@@ -444,20 +473,24 @@ if __name__ == "__main__":
             paragraph = text['text'].split('.')
             annotation = text['annotations']
             offset = int(fulltext['documents'][0]['passages'][cont]['offset'])
+            
             section = fulltext['documents'][0]['passages'][cont]['infons']['iao_name_1']
             dict_entities = {}
             dict_entities_abbre = {}
+            curoffset = offset
+            nextstart = 0
             for sentence in paragraph:
                 sentence = sentence.strip()
                 words = re.split('[ ]', sentence)
                 for word in words:
-                    matchword = search_enzyme(word)
+                    matchword = search_enzyme(word.lower())
                     if matchword != '':
                         (entity, content, ider) = search_pattern(sentence, word, matchword)
                         if entity != None:
                             w.write(filename + ' ' + section + ':' + entity + ' ' + ider + '\n')
-                            #id_num += 1
-                            annotation.append(annotate_corpus(ider, entity, offset, text['text'], section))
+                            annotation.append(annotate_corpus(ider, entity, curoffset, text['text'][nextstart:], section))
+                            curoffset = curoffset + text['text'][nextstart:].find(entity) + len(entity)
+                            nextstart = nextstart + text['text'][nextstart:].find(entity) + len(entity)
                             sentence = content 
             if abbre_list:
                 end_letter = ['.', ';', '?', '!', '"', ':', ',']
