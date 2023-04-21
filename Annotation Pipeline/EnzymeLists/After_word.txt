@@ -1,0 +1,613 @@
+11E,13Z-forming
+11E,13E-forming
+UMP
+ATP-hydrolysing
+non-base specific
+adenosine triphosphate-hydrolysing
+bifunctional enzyme: prosolanapyrone II oxidase/prosolanapyrone III cycloisomerase
+ferredoxin
+NADPH
+NADH
+ferredoxin-dependent
+bifunctional enzyme
+flavodoxin
+methylating
+cob(II)alamin reducing
+cobalamin-dependent
+cobalamin-independent
+FAD
+deacetylating
+UDP-forming
+glycosyl-transferring
+GDP-forming
+guanosine diphosphate-forming
+ADP-forming
+1,2-linking
+1,6-linking
+maltosyl-transferring
+spermidine-specific
+acetylserine
+O-acetyl-L-serine
+O-acetyl-L-serine-dependent
+CMP-forming
+3-phospho-L-serine-dependent
+AdoMet-dependent
+indole-salvaging
+neryl-diphosphate-cyclizing
+geranyl-diphosphate-cyclizing
+glutamine hydrolysing
+L-aspartate-adding
+L-arginine-adding
+ammonia
+glutamine-hydrolysing
+ATP
+NAD+
+P-450 17alpha,lyase
+carboxylating
+CoA-acylating
+CoA-acetylating
+CoA-butanoylating
+ATP-dephosphorylating
+CoA-propanoylating
+CoA-pentanoylating
+adding hydrogen-sulfide
+adding cysteine
+adding methanethiol
+adding N6-substituted adenine
+adding pyrazole
+adding 3,4-dihydroxypyridin-1-yl
+adding uracil
+pyruvate-phosphorylating
+polymerizing
+deaminating
+decarboxylating
+benzaldehyde-forming
+tryptamine-forming
+phosphorylating
+transphosphorylating
+dehydrating
+dimerizing
+phenylacetaldehyde-forming
+4,5-dihydro-5-oxofuran-2-acetate-forming
+cyclizing
+tartronate-semialdehyde-forming
+3-methylthiopropanamine-forming
+pyrogallol-forming
+decyclizing
+decyclizing, stipitatate-forming
+amino-transferring
+2-oxohept-3-enedioate-forming
+2-arylpropionate-forming
+phosphate-acetylating
+pyruvate-forming
+2-amino-4-hydroxy-6-hydroxymethyl-7,8-dihydropteridine-forming
+desmosterol-forming
+deformylating
+formate-forming
+cyanide forming
+N-acetyl-D-mannosamine-forming
+acetyl-CoA-forming
+amino-accepting
+acetaldehyde-forming
+photosensitive
+carbon-dioxide-forming
+adding indoleglycerol-phosphate
+adding homocysteine
+adding 5-aminolevulinate and cyclizing
+5-dehydro-4-deoxy-D-glucarate-forming
+dTDP-4-dehydro-6-deoxy-alpha-D-glucose-forming
+GDP-4-dehydro-6-deoxy-D-mannose-forming
+oct-2-enoyl-[acyl-carrier protein]-forming
+adding D-ribose 5-phosphate
+adding dopamine
+2-oxopent-4-enoate-forming
+cyclohexa-1,5-dienecarbonyl-CoA-forming
+daidzein-forming
+12alpha-hydroxy-3-oxochola-4,6-dienoate-forming
+L-ectoine-forming
+arabidiol forming
+dammarenediol-II forming
+myrcene-forming
+ADP-hydrolysing
+dTDP-(2R,6S)-2,4-dihydroxy-6-methyl-2,6-dihydropyran-3-one-forming
+2-[(omega-methylthio)alkyl]maleate-forming
+di-beta-D-fructofuranose-2,6':2',6-dianhydride-forming
+alpha-D-fructofuranose-beta-D-fructofuranose-1,2':2,1'-dianhydride-forming
+alpha-D-fructofuranose-beta-D-fructofuranose-1,2':2,3'-dianhydride-forming
+adding water
+cyclizing, aristolochene-forming
+6-pyruvoyl-5,6,7,8-tetrahydropterin-forming
+limonene forming
+cyclizing, taxadiene-forming
+germacrene-A-forming
+isoprene-forming
+isopimara-7,15-diene-forming
+caryophyllene-forming
+pinene forming
+9,13-epoxylabd-14-ene-forming
+2-dehydro-3-deoxy-6-phospho-D-gluconate-forming
+fumarate-forming
+adding pyruvate and cyclizing
+isomerizing
+adding HCN
+adding sulfite
+1-aminocyclopropane-1-carboxylate-forming
+epoxide-forming
+epoxyalkane-ring-forming
+ambigious
+chloride-hydrolysing
+1,2-cyclic-phosphate-forming
+cyclic-FMN-forming
+ring-opening
+cyclopropane-decyclizing
+AMP-forming
+AMP
+CTP
+ADP
+ADP-forming, carbamate-phosphorylating
+nicotinamide adenine dinucleotide
+AMP-forming, NMN-forming
+ATP or NAD+
+ATP, ADP or GTP
+GTP11E,13Z-forming
+11E,13E-forming
+UMP
+ATP-hydrolysing
+non-base specific
+adenosine triphosphate-hydrolysing
+bifunctional enzyme: prosolanapyrone II oxidase/prosolanapyrone III cycloisomerase
+ferredoxin
+NADPH
+NADH
+ferredoxin-dependent
+bifunctional enzyme
+flavodoxin
+methylating
+cob(II
+cobalamin-dependent
+cobalamin-independent
+FAD
+deacetylating
+unknown stereospecificity
+UDP-forming
+glycosyl-transferring
+GDP-forming
+guanosine diphosphate-forming
+ADP-forming
+1,2-linking
+1,6-linking
+maltosyl-transferring
+spermidine-specific
+acetylserine
+O-acetyl-L-serine
+O-acetyl-L-serine-dependent
+CMP-forming
+3-phospho-L-serine-dependent
+AdoMet-dependent
+indole-salvaging
+neryl-diphosphate-cyclizing
+geranyl-diphosphate-cyclizing
+glutamine hydrolysing
+bifunctional enzyme: prosolanapyrone II oxidase/prosolanapyrone III cyclosiomerase
+L-aspartate-adding
+L-arginine-adding
+ammonia
+glutamine-hydrolysing
+ATP
+NAD+
+P-450 17alpha,lyase
+carboxylating
+CoA-acylating
+CoA-acetylating
+CoA-butanoylating
+ATP-dephosphorylating
+CoA-propanoylating
+CoA-pentanoylating
+adding hydrogen-sulfide
+adding cysteine
+adding methanethiol
+adding N6-substituted adenine
+adding pyrazole
+adding 3,4-dihydroxypyridin-1-yl
+adding uracil
+pyruvate-phosphorylating
+polymerizing
+deaminating
+decarboxylating
+benzaldehyde-forming
+tryptamine-forming
+phosphorylating
+transphosphorylating
+dehydrating
+dimerizing
+phenylacetaldehyde-forming
+4,5-dihydro-5-oxofuran-2-acetate-forming
+cyclizing
+tartronate-semialdehyde-forming
+3-methylthiopropanamine-forming
+pyrogallol-forming
+decyclizing
+decyclizing, stipitatate-forming
+amino-transferring
+2-oxohept-3-enedioate-forming
+2-arylpropionate-forming
+phosphate-acetylating
+pyruvate-forming
+2-amino-4-hydroxy-6-hydroxymethyl-7,8-dihydropteridine-forming
+desmosterol-forming
+deformylating
+formate-forming
+cyanide forming
+N-acetyl-D-mannosamine-forming
+acetyl-CoA-forming
+amino-accepting
+acetaldehyde-forming
+photosensitive
+carbon-dioxide-forming
+adding indoleglycerol-phosphate
+adding homocysteine
+adding 5-aminolevulinate and cyclizing
+5-dehydro-4-deoxy-D-glucarate-forming
+dTDP-4-dehydro-6-deoxy-alpha-D-glucose-forming
+GDP-4-dehydro-6-deoxy-D-mannose-forming
+oct-2-enoyl-[acyl-carrier protein]-forming
+adding D-ribose 5-phosphate
+adding dopamine
+2-oxopent-4-enoate-forming
+cyclohexa-1,5-dienecarbonyl-CoA-forming
+daidzein-forming
+12alpha-hydroxy-3-oxochola-4,6-dienoate-forming
+L-ectoine-forming
+arabidiol forming
+dammarenediol-II forming
+myrcene-forming
+ADP-hydrolysing
+dTDP-(2R,6S
+2-[(omega-methylthio
+di-beta-D-fructofuranose-2,6':2',6-dianhydride-forming
+alpha-D-fructofuranose-beta-D-fructofuranose-1,2':2,1'-dianhydride-forming
+alpha-D-fructofuranose-beta-D-fructofuranose-1,2':2,3'-dianhydride-forming
+adding water
+cyclizing, aristolochene-forming
+6-pyruvoyl-5,6,7,8-tetrahydropterin-forming
+limonene forming
+cyclizing, taxadiene-forming
+germacrene-A-forming
+isoprene-forming
+isopimara-7,15-diene-forming
+caryophyllene-forming
+pinene forming
+9,13-epoxylabd-14-ene-forming
+2-dehydro-3-deoxy-6-phospho-D-gluconate-forming
+fumarate-forming
+adding pyruvate and cyclizing
+isomerizing
+adding HCN
+adding sulfite
+1-aminocyclopropane-1-carboxylate-forming
+epoxide-forming
+epoxyalkane-ring-forming
+ambigious
+chloride-hydrolysing
+1,2-cyclic-phosphate-forming
+cyclic-FMN-forming
+ring-opening
+cyclopropane-decyclizing
+AMP-forming
+AMP
+CTP
+ADP
+ADP-forming, carbamate-phosphorylating
+nicotinamide adenine dinucleotide
+AMP-forming, NMN-forming
+ATP or NAD+
+GTP
+ATP, ADP or GTP
+11E,13Z-forming
+11E,13E-forming
+UMP
+ATP-hydrolysing
+non-base specific
+adenosine triphosphate-hydrolysing
+bifunctional enzyme: prosolanapyrone II oxidase/prosolanapyrone III cycloisomerase
+ferredoxin
+NADPH
+NADH
+ferredoxin-dependent
+bifunctional enzyme
+flavodoxin
+methylating
+cob(II
+cobalamin-dependent
+cobalamin-independent
+FAD
+deacetylating
+unknown stereospecificity
+UDP-forming
+glycosyl-transferring
+GDP-forming
+guanosine diphosphate-forming
+ADP-forming
+1,2-linking
+1,6-linking
+maltosyl-transferring
+spermidine-specific
+acetylserine
+O-acetyl-L-serine
+O-acetyl-L-serine-dependent
+CMP-forming
+3-phospho-L-serine-dependent
+AdoMet-dependent
+indole-salvaging
+neryl-diphosphate-cyclizing
+geranyl-diphosphate-cyclizing
+glutamine hydrolysing
+bifunctional enzyme: prosolanapyrone II oxidase/prosolanapyrone III cyclosiomerase
+L-aspartate-adding
+L-arginine-adding
+ammonia
+glutamine-hydrolysing
+ATP
+NAD+
+P-450 17alpha,lyase
+carboxylating
+CoA-acylating
+CoA-acetylating
+CoA-butanoylating
+ATP-dephosphorylating
+CoA-propanoylating
+CoA-pentanoylating
+adding hydrogen-sulfide
+adding cysteine
+adding methanethiol
+adding N6-substituted adenine
+adding pyrazole
+adding 3,4-dihydroxypyridin-1-yl
+adding uracil
+pyruvate-phosphorylating
+polymerizing
+deaminating
+decarboxylating
+benzaldehyde-forming
+tryptamine-forming
+phosphorylating
+transphosphorylating
+dehydrating
+dimerizing
+phenylacetaldehyde-forming
+4,5-dihydro-5-oxofuran-2-acetate-forming
+cyclizing
+tartronate-semialdehyde-forming
+3-methylthiopropanamine-forming
+pyrogallol-forming
+decyclizing
+decyclizing, stipitatate-forming
+amino-transferring
+2-oxohept-3-enedioate-forming
+2-arylpropionate-forming
+phosphate-acetylating
+pyruvate-forming
+2-amino-4-hydroxy-6-hydroxymethyl-7,8-dihydropteridine-forming
+desmosterol-forming
+deformylating
+formate-forming
+cyanide forming
+N-acetyl-D-mannosamine-forming
+acetyl-CoA-forming
+amino-accepting
+acetaldehyde-forming
+photosensitive
+carbon-dioxide-forming
+adding indoleglycerol-phosphate
+adding homocysteine
+adding 5-aminolevulinate and cyclizing
+5-dehydro-4-deoxy-D-glucarate-forming
+dTDP-4-dehydro-6-deoxy-alpha-D-glucose-forming
+GDP-4-dehydro-6-deoxy-D-mannose-forming
+oct-2-enoyl-[acyl-carrier protein]-forming
+adding D-ribose 5-phosphate
+adding dopamine
+2-oxopent-4-enoate-forming
+cyclohexa-1,5-dienecarbonyl-CoA-forming
+daidzein-forming
+12alpha-hydroxy-3-oxochola-4,6-dienoate-forming
+L-ectoine-forming
+arabidiol forming
+dammarenediol-II forming
+myrcene-forming
+ADP-hydrolysing
+dTDP-(2R,6S
+2-[(omega-methylthio
+di-beta-D-fructofuranose-2,6':2',6-dianhydride-forming
+alpha-D-fructofuranose-beta-D-fructofuranose-1,2':2,1'-dianhydride-forming
+alpha-D-fructofuranose-beta-D-fructofuranose-1,2':2,3'-dianhydride-forming
+adding water
+cyclizing, aristolochene-forming
+6-pyruvoyl-5,6,7,8-tetrahydropterin-forming
+limonene forming
+cyclizing, taxadiene-forming
+germacrene-A-forming
+isoprene-forming
+isopimara-7,15-diene-forming
+caryophyllene-forming
+pinene forming
+9,13-epoxylabd-14-ene-forming
+2-dehydro-3-deoxy-6-phospho-D-gluconate-forming
+fumarate-forming
+adding pyruvate and cyclizing
+isomerizing
+adding HCN
+adding sulfite
+1-aminocyclopropane-1-carboxylate-forming
+epoxide-forming
+epoxyalkane-ring-forming
+ambigious
+chloride-hydrolysing
+1,2-cyclic-phosphate-forming
+cyclic-FMN-forming
+ring-opening
+cyclopropane-decyclizing
+AMP-forming
+AMP
+CTP
+ADP
+ADP-forming, carbamate-phosphorylating
+nicotinamide adenine dinucleotide
+AMP-forming, NMN-forming
+ATP or NAD+
+GTP
+ATP, ADP or GTP
+11E,13Z-forming
+11E,13E-forming
+UMP
+ATP-hydrolysing
+non-base specific
+adenosine triphosphate-hydrolysing
+bifunctional enzyme: prosolanapyrone II oxidase/prosolanapyrone III cycloisomerase
+ferredoxin
+NADPH
+NADH
+ferredoxin-dependent
+bifunctional enzyme
+flavodoxin
+methylating
+cob(II
+cobalamin-dependent
+cobalamin-independent
+FAD
+deacetylating
+unknown stereospecificity
+UDP-forming
+glycosyl-transferring
+GDP-forming
+guanosine diphosphate-forming
+ADP-forming
+1,2-linking
+1,6-linking
+maltosyl-transferring
+spermidine-specific
+acetylserine
+O-acetyl-L-serine
+O-acetyl-L-serine-dependent
+CMP-forming
+3-phospho-L-serine-dependent
+AdoMet-dependent
+indole-salvaging
+neryl-diphosphate-cyclizing
+geranyl-diphosphate-cyclizing
+glutamine hydrolysing
+bifunctional enzyme: prosolanapyrone II oxidase/prosolanapyrone III cyclosiomerase
+L-aspartate-adding
+L-arginine-adding
+ammonia
+glutamine-hydrolysing
+ATP
+NAD+
+P-450 17alpha,lyase
+carboxylating
+CoA-acylating
+CoA-acetylating
+CoA-butanoylating
+ATP-dephosphorylating
+CoA-propanoylating
+CoA-pentanoylating
+adding hydrogen-sulfide
+adding cysteine
+adding methanethiol
+adding N6-substituted adenine
+adding pyrazole
+adding 3,4-dihydroxypyridin-1-yl
+adding uracil
+pyruvate-phosphorylating
+polymerizing
+deaminating
+decarboxylating
+benzaldehyde-forming
+tryptamine-forming
+phosphorylating
+transphosphorylating
+dehydrating
+dimerizing
+phenylacetaldehyde-forming
+4,5-dihydro-5-oxofuran-2-acetate-forming
+cyclizing
+tartronate-semialdehyde-forming
+3-methylthiopropanamine-forming
+pyrogallol-forming
+decyclizing
+decyclizing, stipitatate-forming
+amino-transferring
+2-oxohept-3-enedioate-forming
+2-arylpropionate-forming
+phosphate-acetylating
+pyruvate-forming
+2-amino-4-hydroxy-6-hydroxymethyl-7,8-dihydropteridine-forming
+desmosterol-forming
+deformylating
+formate-forming
+cyanide forming
+N-acetyl-D-mannosamine-forming
+acetyl-CoA-forming
+amino-accepting
+acetaldehyde-forming
+photosensitive
+carbon-dioxide-forming
+adding indoleglycerol-phosphate
+adding homocysteine
+adding 5-aminolevulinate and cyclizing
+5-dehydro-4-deoxy-D-glucarate-forming
+dTDP-4-dehydro-6-deoxy-alpha-D-glucose-forming
+GDP-4-dehydro-6-deoxy-D-mannose-forming
+oct-2-enoyl-[acyl-carrier protein]-forming
+adding D-ribose 5-phosphate
+adding dopamine
+2-oxopent-4-enoate-forming
+cyclohexa-1,5-dienecarbonyl-CoA-forming
+daidzein-forming
+12alpha-hydroxy-3-oxochola-4,6-dienoate-forming
+L-ectoine-forming
+arabidiol forming
+dammarenediol-II forming
+myrcene-forming
+ADP-hydrolysing
+dTDP-(2R,6S
+2-[(omega-methylthio
+di-beta-D-fructofuranose-2,6':2',6-dianhydride-forming
+alpha-D-fructofuranose-beta-D-fructofuranose-1,2':2,1'-dianhydride-forming
+alpha-D-fructofuranose-beta-D-fructofuranose-1,2':2,3'-dianhydride-forming
+adding water
+cyclizing, aristolochene-forming
+6-pyruvoyl-5,6,7,8-tetrahydropterin-forming
+limonene forming
+cyclizing, taxadiene-forming
+germacrene-A-forming
+isoprene-forming
+isopimara-7,15-diene-forming
+caryophyllene-forming
+pinene forming
+9,13-epoxylabd-14-ene-forming
+2-dehydro-3-deoxy-6-phospho-D-gluconate-forming
+fumarate-forming
+adding pyruvate and cyclizing
+isomerizing
+adding HCN
+adding sulfite
+1-aminocyclopropane-1-carboxylate-forming
+epoxide-forming
+epoxyalkane-ring-forming
+ambigious
+chloride-hydrolysing
+1,2-cyclic-phosphate-forming
+cyclic-FMN-forming
+ring-opening
+cyclopropane-decyclizing
+AMP-forming
+AMP
+CTP
+ADP
+ADP-forming, carbamate-phosphorylating
+nicotinamide adenine dinucleotide
+AMP-forming, NMN-forming
+ATP or NAD+
+GTP
+ATP, ADP or GTP
