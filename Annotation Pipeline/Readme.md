@@ -24,4 +24,6 @@ All the files which are the given enzyme-relative lists and would be used during
 
 Run the code from the command line
 
->> python AnnotationEnzymes.py -i "path/to/input/data/from/Auto-CORPus" -o "path/to/output/folder/of/annotated/JSONfiles"
+```
+python AnnotationEnzymes.py -i "path/to/input/data/from/Auto-CORPus" -o "path/to/output/folder/of/annotated/JSONfiles"
+```
