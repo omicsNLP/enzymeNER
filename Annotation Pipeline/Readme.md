@@ -22,12 +22,6 @@ All the files which are the given enzyme-relative lists and would be used during
 
 ## How to use
 
-To use this script, you need to fit the some path to your own ones.
+Run the code from the command line
 
-```text_folder_path``` is the path to the folder of biomedical texts processed by Auto-CORPus.
-
-```print_path``` is the path to the file which will show out all the annotations in the whole process. (optional)
-
-```output_folder``` is the path to the folder where the annotated files will be saved.
-
-Then, you can freely run this script using python command.
+>> python AnnotationEnzymes.py -i "path/to/input/data/from/Auto-CORPus" -o "path/to/output/folder/of/annotated/JSONfiles"
