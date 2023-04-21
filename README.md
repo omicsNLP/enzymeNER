@@ -1,5 +1,5 @@
 # enzymeNER
-The enzymeNER contains two deep learning (DL) based models for named-entity recognition (NER) of enzyme which can be trained on the provided corpus for enzyme extraction from inputs. A newly designed Annotation Pipeline is also proposed for automatically labelling  enzyme-entities on training corpus. 
+The enzymeNER contains two deep learning (DL) based models for named-entity recognition (NER) of enzyme which can be trained on the provided corpus for enzyme extraction from inputs. These DL models are based on [TABoLiSTM](https://github.com/omicsNLP/MetaboliteNER) A newly designed Annotation Pipeline is also proposed for automatically labelling  enzyme-entities on training corpus. 
 
 ## Installation dependence
 | Name | Version |
