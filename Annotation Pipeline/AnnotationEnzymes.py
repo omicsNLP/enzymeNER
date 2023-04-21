@@ -25,9 +25,6 @@ args = parser.parse_args()
 text_folder_path = args.inputDir
 output_folder = args.outputDir if args.outputDir else os.path.join(text_folder_path,"eNzymER_annotation_output")
 
-#text_folder_path = "E:/Student folders/Meiqi Wang/AAA_enzymeAnnotTest_input" # Meiqi, this should ideally be an input to the main function (means people won't have to change the code)
-#output_folder = "E:/Student folders/Meiqi Wang/AAA_enzymeAnnotTest_output" # Meiqi, this should ideally be an input to the main function (means people won't have to change the code)
-
 def enzyme_ase_list(word):
     matchword = ''
     first_match = ''
