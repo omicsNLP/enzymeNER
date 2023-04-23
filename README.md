@@ -12,24 +12,38 @@ The enzymeNER contains two deep learning (DL) based models for named-entity reco
 ## Train and evaluate the model
 Run 'run.py' to start training or testing.
 
+enzymeNER provides two DL-based models as word-embeddings which are pretrained SciBERT and BioBERT respectively. So, first of all, you need to choose one word-embedding method with ```wdEmbed``` to execute the flowing codes.
+
+e.g.
+
+```
+python run.py --wdEmbed "SciBERT"
+```
+
+The bool variable ```isTrain``` controls the program to execute training or evaluation.
+To train the model, ```isTrain``` should be True, and also ```train_set``` and ```train_annotset``` are needed to provided.
+
+e.g.
+
+```
+python run.py --wdEmbed "SciBERT" --isTrain True --train_set "./TrainingSet/TrainingSet.txt" --train_annotset "./TrainingSet/TrainingSetAnnot.txt"
+```
+
 To load a pretrained model, there are two arguments, i.e.,  ```pretrain_model``` and ```test_json```.
 
 e.g.
 ```
-python run.py --isTrain False --test_json "eNzymER_SciModel.json" --pretrain_model "./SciBertModels/epoch_9_SciModel_weights" 
+python run.py --wdEmbed "SciBERT" --isTrain False --test_json "eNzymER_SciModel.json" --pretrain_model "./SciBertModels/epoch_9_SciModel_weights" 
 ```
 
-To evaluate the model, besides loading model, the test set is needed. including ```test_set``` and ```test_annotset```. The metrics containing Precision, Recall and F1-score will output as the result.
+To evaluate the model, besides loading model, the test set is needed. including ```test_set``` and ```test_annotset``` and ```isTrain``` must be "False". The metrics containing Precision, Recall and F1-score will output as the result.
 
 e.g.
 
 ```
-python run.py --isTrain False --test_json "eNzymER_SciModel.json" --pretrain_model "./SciBertModels/epoch_9_SciModel_weights" --test_set "./TestSet/test.txt"
+python run.py --wdEmbed "SciBERT" --isTrain False --test_json "eNzymER_SciModel.json" --pretrain_model "./SciBertModels/epoch_9_SciModel_weights" --test_set "./TestSet/test.txt"
 --test_annotset "./TestSet/testAnnotated.txt"
 ```
-
-
-enzymeNER provides two DL-based model with two different word embedding algorithms which are pretrained SciBERT and BioBERT respectively. To use each model, only need to change the 'wdEmbed' to 'SciBERT' or 'BioBERT'.
 
 ## Infer the model
 To use the well-trained model to extract the enzyme from input texts, use 'process("input text")' function and the extracted entities will be given back with their positions inside the input text.
