@@ -10,10 +10,14 @@ The enzymeNER contains two deep learning (DL) based models for named-entity reco
 |tokenizers|0.11.4|
 
 ## Train and evaluate the model
-To Train the model, run 'run_train.py' to start training with the operation inside changing to 'train'. And when the operation is changed to 'test', this file will execute the evaluation process and The metrics including Precision, Recall and F1-score will output as the result.
+To Train the model, run 'run.py' to start training or testing.
 
+this file will execute the evaluation process and The metrics including Precision, Recall and F1-score will output as the result.
+
+To load a pretrained model, there are two arguments, i.e.,  ```pretrain_model``` and ```test_json```.
+e.g.
 ```
-@Meiqi, need to put some code in here please to make it easy for people.
+python --isTrain False --test_json "eNzymER_SciModel.json" --pretrain_model "./SciBertModels/epoch_9_SciModel_weights" 
 ```
 
 enzymeNER provides two DL-based model with two different word embedding algorithms which are pretrained SciBERT and BioBERT respectively. To use each model, only need to change the 'wdEmbed' to 'SciBERT' or 'BioBERT'.
