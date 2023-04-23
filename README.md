@@ -46,7 +46,7 @@ python run.py --wdEmbed "SciBERT" --isTrain False --test_json "eNzymER_SciModel.
 --test_annotset "./TestSet/testAnnotated.txt"
 ```
 
-OR you can directly change the arguments with the default inside the ```run.py```, and than just execute ``` python run.py``` to run the code.
+OR you can directly change the arguments with the default inside the ```run.py```, and than just execute ```python run.py``` to run the code.
 
 ## Infer the model
 To use the well-trained model to extract the enzyme from input texts, use 'process("input text")' function and the extracted entities will be given back with their positions inside the input text.
