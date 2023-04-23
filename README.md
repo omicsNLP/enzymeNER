@@ -12,7 +12,7 @@ The enzymeNER contains two deep learning (DL) based models for named-entity reco
 ## Train and evaluate the model
 Run 'run.py' to start training or testing.
 
-enzymeNER provides two DL-based models as word-embeddings which are pretrained SciBERT and BioBERT respectively. So, first of all, you need to choose one word-embedding method with ```wdEmbed``` to execute the flowing codes.
+enzymeNER provides two DL-based models as word-embeddings which are pretrained SciBERT and BioBERT respectively. So, first of all, you need to choose one word-embedding method through ```wdEmbed```.
 
 e.g.
 
@@ -45,6 +45,8 @@ e.g.
 python run.py --wdEmbed "SciBERT" --isTrain False --test_json "eNzymER_SciModel.json" --pretrain_model "./SciBertModels/epoch_9_SciModel_weights" --test_set "./TestSet/test.txt"
 --test_annotset "./TestSet/testAnnotated.txt"
 ```
+
+OR you can directly change the arguments with the default inside the ```run.py```, and than just execute ``` python run.py``` to run the code.
 
 ## Infer the model
 To use the well-trained model to extract the enzyme from input texts, use 'process("input text")' function and the extracted entities will be given back with their positions inside the input text.
