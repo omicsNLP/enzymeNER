@@ -21,6 +21,7 @@ python run.py --wdEmbed "SciBERT"
 ```
 
 The bool variable ```isTrain``` controls the program to execute training or evaluation.
+
 To train the model, ```isTrain``` should be True, and also ```train_set``` and ```train_annotset``` are needed to provided.
 
 e.g.
