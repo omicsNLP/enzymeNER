@@ -51,6 +51,8 @@ OR you can directly change the arguments with the default inside the ```run.py``
 ## Infer the model
 To use the well-trained model to extract the enzyme from input texts, use 'process("input text")' function and the extracted entities will be given back with their positions inside the input text.
 
+Before that, you also need to set ```isTrain``` to ```False```, choose the method for word-embedding through ```wdEmbed```, and load the pretrained model.
+
 ```
 @Joram will put some code in here as well, but Meiqi welcome to add yours.
 ```
