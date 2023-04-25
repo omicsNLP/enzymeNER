@@ -48,9 +48,9 @@ Before that, you also need to set ```isTrain``` to ```False```, choose the metho
 ```
 import eNzymER_model
 mdl = "scibert" # scibert or biobert
-enz = eNzymER_model.eNzymER(mdl) ' initialise
-json_path='eNzymER_SciModel.json'
-weight_path='./SciBertModels/epoch_9_SciModel_weights' ## do not add a suffix here
+enz = eNzymER_model.eNzymER(mdl) # initialise
+json_path = 'eNzymER_SciModel.json'
+weight_path = './SciBertModels/epoch_9_SciModel_weights' # do not add a suffix here
 enz.load(json_path,weight_path) # load model
 ```
 
