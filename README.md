@@ -67,7 +67,7 @@ text_batch = ["In the glucose-alanine cycle pathway, glutamate dehydrogenase in 
 enz.batchprocess(text_batch, threshold=0.5)
 ```
 
-Procudes this output:
+Produces this output:
 
 ```
 [[(38, 61, 'glutamate dehydrogenase'), (182, 206, 'alanine aminotransferase')],
