@@ -12,47 +12,65 @@ The enzymeNER contains two deep learning (DL) based models for named-entity reco
 ## Train and evaluate the model
 Run 'run.py' to start training or testing.
 
-enzymeNER provides two DL-based models as word-embeddings which are pretrained SciBERT and BioBERT respectively. So, first of all, you need to choose one word-embedding method through ```wdEmbed```.
-
-e.g.
+enzymeNER provides two DL-based models as word-embeddings (pretrained SciBERT and BioBERT, respectively).
+As a first step you need to choose one word-embedding method through ```wdEmbed```.
 
 ```
 python run.py --wdEmbed "SciBERT"
 ```
 
 The bool variable ```isTrain``` controls the program to execute training or evaluation.
-
-To train the model, ```isTrain``` should be True, and also ```train_set``` and ```train_annotset``` are needed to provided.
-
-e.g.
+To train the model, ```isTrain``` should be True, and also ```train_set``` and ```train_annotset``` need to provided.
 
 ```
 python run.py --wdEmbed "SciBERT" --isTrain True --train_set "./TrainingSet/TrainingSet.txt" --train_annotset "./TrainingSet/TrainingSetAnnot.txt"
 ```
 
-To load a pretrained model, there are two arguments, i.e.,  ```pretrain_model``` and ```test_json```.
+To load a pretrained model, there are two required arguments, i.e.,  ```pretrain_model``` and ```test_json```.
 
-e.g.
 ```
 python run.py --wdEmbed "SciBERT" --isTrain False --test_json "eNzymER_SciModel.json" --pretrain_model "./SciBertModels/epoch_9_SciModel_weights" 
 ```
 
-To evaluate the model, besides loading model, the test set is needed. including ```test_set``` and ```test_annotset``` and ```isTrain``` must be "False". The metrics containing Precision, Recall and F1-score will output as the result.
-
-e.g.
+To evaluate the model, aside from loading a model as above, a test set is a required input. For including ```test_set``` and ```test_annotset```, ```isTrain``` must be set to "False". The resulting output of the call are the metrics of the evaluation (Precision, Recall and F1-score) on the test set.
 
 ```
-python run.py --wdEmbed "SciBERT" --isTrain False --test_json "eNzymER_SciModel.json" --pretrain_model "./SciBertModels/epoch_9_SciModel_weights" --test_set "./TestSet/test.txt"
---test_annotset "./TestSet/testAnnotated.txt"
+python run.py --wdEmbed "SciBERT" --isTrain False --test_json "eNzymER_SciModel.json" --pretrain_model "./SciBertModels/epoch_9_SciModel_weights" --test_set "./TestSet/test.txt" --test_annotset "./TestSet/testAnnotated.txt"
 ```
 
-OR you can directly change the arguments with the default inside the ```run.py```, and then just execute ```python run.py``` to run the code.
+Alternatively, you can directly change the arguments from the defaults inside the ```run.py```, and then execute ```python run.py``` to run the code.
 
 ## Infer the model
-To use the well-trained model to extract the enzyme from input texts, use 'process("input text")' function and the extracted entities will be given back with their positions inside the input text.
+To use the trained model to extract enzymes from input texts, you can use the 'process("input text")' function and the extracted entities will be given as output with their relative positions inside the input text.
 
 Before that, you also need to set ```isTrain``` to ```False```, choose the method for word-embedding through ```wdEmbed```, and load the pretrained model.
 
 ```
-@Joram will put some code in here as well, but Meiqi welcome to add yours.
+import eNzymER_model
+mdl = "scibert" # scibert or biobert
+enz = eNzymER_model.eNzymER(mdl) ' initialise
+json_path='eNzymER_SciModel.json'
+weight_path='./SciBertModels/epoch_9_SciModel_weights' ## do not add a suffix here
+enz.load(json_path,weight_path) # load model
+```
+
+Then use the process function to apply the model on sentences.
+
+```
+enz.process('The cysteine residue can be N-acetylated by cysteine conjugate N-acetyltransferases.')
+```
+
+Use the batchprocess function to apply the model on multiple split sentences. You can also vary the threshold (default = 0.5) to decide on inclusion of entities.
+
+```
+text_batch = ["In the glucose-alanine cycle pathway, glutamate dehydrogenase in muscle catalyzes the binding of α-ketoglutaric acid to ammonia to form glutamate, followed by glutamate catalyzed by alanine aminotransferase; pyruvic acid forms alpha-ketoglutarate and alanine [30].", "N1-methylinosine is found 3-adjacent to the anticodon at position 37 of eukaryotic tRNAs and is formed from inosine by a specific S-adenosylmethionine-dependent methylase.", "Pyruvate dehydrogenase (PDH), citrate synthase (CS), complete turnover of the TCA cycle, anaplerosis, and synthesis of glutamate and glutamine from glucose were evident in all eleven tumors."]
+enz.batchprocess(text_batch, threshold=0.5)
+```
+
+Procudes this output:
+
+```
+[[(38, 61, 'glutamate dehydrogenase'), (182, 206, 'alanine aminotransferase')],
+ [(130, 170, 'S-adenosylmethionine-dependent methylase')],
+ [(0, 22, 'Pyruvate dehydrogenase'), (30, 46, 'citrate synthase')]]
 ```
