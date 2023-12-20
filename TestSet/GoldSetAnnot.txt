@@ -643,7 +643,6 @@ PMC5097088	R06003	0	10	Aldolase A
 PMC5097088	R06006	21	31	aldolase A
 PMC5323494	D01005	78	94	phospholipase A2
 PMC5323494	D04013	78	94	protein kinase C
-PMC5323494	D04013	96	99	PKC
 PMC5323494	F31000	30	63	Lysophospholipid acyltransferases
 PMC5323494	F43000	36	52	Protein-kinase-C
 PMC5323494	F54001	61	97	glycerol 3-phosphate acyltransferase
@@ -721,7 +720,6 @@ PMC6489687	R02001	6	15	aromatase
 PMC6503468	F41000	112	139	indoleamine 2,3-dioxygenase
 PMC6503468	F55000	93	139	3-hydroxyanthranilicacidon mushroom tyrosinase
 PMC6503468	I02000	112	138	tryptophan 2,3-dioxygenase
-PMC6503468	I02000	140	143	TDO
 PMC6503468	I02000	148	175	indoleamine 2,3-dioxygenase
 PMC6503468	I02000	177	204	indoleamine 2,3-dioxygenase
 PMC6507152	F26001	100	149	myelin basic protein (arginine) methyltransferase
@@ -854,8 +852,6 @@ PMC6584945	F67001	38	63	dopamine beta-hydroxylase
 PMC6584945	F67001	65	90	dopamine beta-hydroxylase
 PMC6584945	F88001	61	82	galactosyltransferase
 PMC6584945	I01001	356	377	alcohol dehydrogenase
-PMC6584945	I01001	379	382	ADH
-PMC6584945	I01002	35	38	ADH
 PMC6584945	R01007	57	87	beta 1,4-galactosyltransferase
 PMC6585303	R13000	249	257	lysozyme
 PMC6585303	R13000	262	274	endonuclease
@@ -939,15 +935,12 @@ PMC6716160	D04006	102	137	methylenetetrahydrofolate reductase
 PMC6716160	D05003	35	63	argininosuccinate synthetase
 PMC6716160	D05003	105	123	arginine deiminase
 PMC6716160	F31001	45	53	arginase
-PMC6716427	D04003	231	236	COX-2
 PMC6716427	F12001	81	96	CYP-epoxygenase
 PMC6716427	F22001	0	15	15-Lipoxygenase
 PMC6716427	I00003	162	171	proteases
 PMC6716427	I00003	183	202	neutrophil elastase
 PMC6716427	I02000	59	72	lipoxygenases
 PMC6716427	I02000	104	120	cyclooxygenase-2
-PMC6716427	I02000	122	127	COX-2
-PMC6716427	R04002	174	179	COX-2
 PMC6718723	D05001	51	74	rRNA methyltransferases
 PMC6718723	D06004	112	135	rRNA methyltransferases
 PMC6718723	M00001	48	54	urease
@@ -1001,8 +994,6 @@ PMC6789025	F19002	35	46	calcineurin
 PMC6789025	F21002	22	44	Myo-Inositol Oxygenase
 PMC6789025	I00001	49	85	urokinase plasminogen-type activator
 PMC6789025	M08001	29	69	glyceraldehyde 3-phosphate dehydrogenase
-PMC6789025	M08001	71	76	GAPDH
-PMC6789025	M08004	70	75	GAPDH
 PMC6789025	M09001	40	62	myo-inositol oxygenase
 PMC6789025	M09001	204	226	horseradish peroxidase
 PMC6789025	M09003	4	26	myo-inositol oxygenase
@@ -1053,11 +1044,9 @@ PMC6815137	I01000	260	278	cysteine proteases
 PMC6815137	R01000	112	128	serine hydrolase
 PMC6815137	R01000	133	160	cathepsin cysteine protease
 PMC6815137	R01002	6	29	monoacylglycerol lipase
-PMC6815137	R01002	31	35	MGLL
 PMC6815137	R01003	116	132	serine hydrolase
 PMC6815137	R01003	141	178	neutral cholesterol ester hydrolase 1
 PMC6815137	R01003	180	217	neutral cholesterol ester hydrolase 1
-PMC6815137	R01003	220	224	MGLL
 PMC6815137	R01004	19	47	fatty acid amide hydrolase 1
 PMC6815137	R01004	54	76	dipeptidyl peptidase-4
 PMC6815137	R01004	78	100	dipeptidyl peptidase-4
@@ -1065,14 +1054,12 @@ PMC6815137	R01007	117	154	neutral cholesterol ester hydrolase 1
 PMC6815137	R02002	81	97	serine hydrolase
 PMC6815137	R02002	102	120	cathepsin protease
 PMC6815137	R02003	0	37	neutral cholesterol ester hydrolase 1
-PMC6815137	R02003	42	46	MGLL
 PMC6815137	R02004	13	41	fatty acid amide hydrolase 1
 PMC6815137	R02005	63	72	peptidase
 PMC6815137	R02005	73	95	dipeptidyl peptidase-4
 PMC6815137	R03002	85	96	cathepsin B
 PMC6815137	R03002	106	117	cathepsin L
 PMC6815137	R03003	39	76	neutral cholesterol ester hydrolase 1
-PMC6815137	R03003	81	85	MGLL
 PMC6815137	R03004	29	57	fatty acid amide hydrolase 1
 PMC6815137	R03004	221	249	fatty acid amide hydrolase 1
 PMC6815137	R03005	68	90	dipeptidyl peptidase-4
@@ -1084,18 +1071,14 @@ PMC6815137	R04002	138	149	cathepsin L
 PMC6815137	R05001	90	127	neutral cholesterol ester hydrolase 1
 PMC6815137	R05001	145	173	fatty acid amide hydrolase 1
 PMC6815137	R05004	46	83	neutral cholesterol ester hydrolase 1
-PMC6815137	R05005	27	31	MGLL
 PMC6815137	R05005	159	175	serine hydrolase
 PMC6815137	R06002	99	136	neutral cholesterol ester hydrolase 1
 PMC6815137	R06003	43	71	fatty acid amide hydrolase 1
-PMC6815137	R06003	76	80	MGLL
 PMC6815137	R06003	103	120	serine hydrolases
 PMC6815137	R08003	45	62	serine hydrolases
 PMC6815137	R08003	64	101	neutral cholesterol ester hydrolase 1
-PMC6815137	R08003	103	107	MGLL
 PMC6815137	R08003	109	137	fatty acid amide hydrolase 1
 PMC6815137	R08005	46	83	neutral cholesterol ester hydrolase 1
-PMC6815137	R08005	85	89	MGLL
 PMC6815137	R08005	91	102	cathepsin B
 PMC6815137	R10002	36	55	cathepsin proteases
 PMC6815137	R10002	56	67	cathepsin B
@@ -1113,7 +1096,6 @@ PMC6826937	D04005	181	207	argininosuccinate synthase
 PMC6826937	D04005	209	232	argininosuccinate lyase
 PMC6826937	D04005	238	246	arginase
 PMC6826937	D04010	49	79	methionine adenosyltransferase
-PMC6826937	D04010	81	86	MAT1A
 PMC6826937	D05004	81	93	transferases
 PMC6826937	D05004	103	138	carnitine/acylcarnitine translocase
 PMC6826937	D05004	143	174	carnitine palmitoyl transferase
@@ -1421,8 +1403,6 @@ PMC7499026	I01002	158	171	transaldolase
 PMC7499026	I01002	173	186	transaldolase
 PMC7499026	I01002	194	201	enolase
 PMC7499026	M07003	47	67	alkaline phosphatase
-PMC7499026	M09001	27	30	pgk
-PMC7499026	M09001	32	35	tal
 PMC7499026	M09001	79	97	Taq DNA polymerase
 PMC7499026	M14000	84	97	transaldolase
 PMC7499026	R01005	22	56	phosphate ABC transporter permease
@@ -1448,12 +1428,8 @@ PMC7506152	F39002	18	38	sphingosine kinase 1
 PMC7506152	F39002	40	60	sphingosine kinase 1
 PMC7506152	F40001	92	118	cytosolic phospholipase a2
 PMC7506152	M03000	0	24	Alanine aminotransferase
-PMC7506152	M03000	26	29	ALT
 PMC7506152	M03000	35	61	aspartate aminotransferase
-PMC7506152	M03000	63	66	AST
 PMC7506152	M04000	110	136	aspartate aminotransferase
-PMC7506152	R00001	82	85	ALT
-PMC7506152	R00001	87	90	AST
 PMC7542363	A00001	66	80	glycoproteases
 PMC7542363	A00002	101	114	glycoprotease
 PMC7542363	A00008	8	32	bacterial glycoproteases
@@ -1569,7 +1545,6 @@ PMC7677002	R15002	15	21	lipase
 PMC7716632	A00006	289	312	argininosuccinate lyase
 PMC7716632	M00002	223	230	enolase
 PMC7716632	R04003	39	62	argininosuccinate lyase
-PMC7716632	R04003	64	67	ASL
 PMC7780360	D01004	133	151	lipoprotein lipase
 PMC7805185	F02002	15	31	histidine kinase
 PMC7805185	F03002	105	127	leucine aminopeptidase
@@ -1681,7 +1656,6 @@ PMC8021180	A00011	192	199	enolase
 PMC8021180	D01004	187	195	protease
 PMC8021180	D04001	170	177	enolase
 PMC8021180	D04001	182	222	glyceraldehyde-3-phosphate dehydrogenase
-PMC8021180	D04001	224	229	GADPH
 PMC8021180	D04001	249	274	triosephosphate isomerase
 PMC8021180	D04001	279	316	phosphoenolpyruvate carboxykinase GTP
 PMC8021180	D04001	354	384	alpha-1,4 glucan phosphorylase
@@ -2179,7 +2153,6 @@ PMC8125016	I01004	332	353	lysine demethylase 1A
 PMC8125016	I02000	56	82	histone acetyltransferases
 PMC8125016	I02000	94	114	histone deacetylases
 PMC8125016	I02000	116	136	histone deacetylases
-PMC8125016	I02002	4	8	HDAC
 PMC8125016	M13006	0	6	Kinase
 PMC8125016	M13009	24	31	kinases
 PMC8125016	M13010	0	6	Kinase
@@ -2223,8 +2196,6 @@ PMC8125016	R17002	97	157	dual specificity tyrosine phosphorylation regulated kin
 PMC8125016	R17003	81	89	kinase’s
 PMC8125016	R17003	139	146	kinases
 PMC8125016	R17003	161	186	LIM domain kinase 1 and 2
-PMC8125016	R17003	191	195	CDK2
-PMC8125016	R18000	0	4	CDK2
 PMC8125016	R18001	9	16	kinases
 PMC8125016	R18001	18	49	protein kinase cGMP-dependent 2
 PMC8125016	R18001	62	102	microtubule affinity regulating kinase 1
@@ -2248,7 +2219,6 @@ PMC8125016	R31002	146	169	casein kinase 2 alpha 1
 PMC8125016	R31002	171	194	casein kinase 2 alpha 1
 PMC8125016	R32000	335	341	GTPase
 PMC8125016	R33001	161	184	cyclin dependent kinase
-PMC8125016	R33001	207	211	CDK2
 PMC8125016	R33001	252	272	DEAH-box helicase 16
 PMC8125016	R33001	461	467	GTPase
 PMC8125016	R33001	553	570	RNA polymerase II
