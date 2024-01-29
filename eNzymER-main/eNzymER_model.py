@@ -1,41 +1,34 @@
-from pickle import FALSE
 import time
 import sys
 import os
 import random
 import json
-from attr import validate
 import numpy as np
-import pandas as pd
 import re
 
 
 from datetime import datetime
-from pydantic import validate_model
 
 import tensorflow as tf
-from torch import int32, threshold
 import transformers
-from transformers import AutoTokenizer, AutoModelForMaskedLM, BertTokenizer, AutoModel
 
+#from .featurizer import Featurizer
 from featurizer import Featurizer
+#from .utils import *
 from utils import *
+#from .corpusreader import CorpusReader
 from corpusreader import CorpusReader
-import sklearn.metrics as mx
-from sklearn.metrics import precision_score, recall_score, f1_score, roc_auc_score, roc_curve, auc
-from sklearn.metrics import classification_report
-from keras.models import load_model
+from sklearn.metrics import precision_score, recall_score, f1_score, confusion_matrix, classification_report
 
-import matplotlib.pyplot as plt
-import seaborn as sns
 import chemtok
+#from chemtok import ChemTokeniser
 
 class eNzymER(object):
     """
     A model for enzyme named entity recognition.
     """
 
-    def __init__(self, wdEmbed):
+    def __init__(self, wdEmbed, run_id):
         
         if wdEmbed.lower() == "scibert":
             bert_pretrain_path = 'allenai/scibert_scivocab_cased'
@@ -46,6 +39,7 @@ class eNzymER(object):
         self.bert_pretrain_path = bert_pretrain_path
         self.tokenizer = transformers.BertTokenizerFast.from_pretrained(self.bert_pretrain_path, do_lower_case=False)
         self.max_seq_len = 512
+        self.run_id = run_id
 
     def _str_to_seq(self, s):
         '''
@@ -72,6 +66,7 @@ class eNzymER(object):
                "chemtok_rep":[],
                "str": s
                }
+        #AV: ct = chemtok.ChemTokeniser(s, clm=True) #ct = self.tokenizer.tokenize(s)
         ct = chemtok.ChemTokeniser(s, clm=True) #ct = self.tokenizer.tokenize(s)
         chemtok_tokens=[t.value for t in ct.tokens]
         
@@ -199,7 +194,7 @@ class eNzymER(object):
         model.compile(loss='categorical_crossentropy', optimizer='rmsprop', metrics=['accuracy'])
         self.model = model
 
-    def train(self, textfile, annotfile, runname):
+    def train(self, textfile, annotfile, runname, n_epochs=10):
         """
         Train a new eNzymER.
         This produces several important files:
@@ -278,9 +273,9 @@ class eNzymER(object):
 
         print("Serialize at", datetime.now(), file=sys.stderr)
         if self.wdEmbed == "biobert":
-            jf = open("eNzymER_%s.json" % runname, "w", encoding="utf-8")#./TrainedModels/
+            jf = open(f"BioBertModels_{self.run_id}/eNzymER_{runname}.json", "w", encoding="utf-8")#./TrainedModels/
         else:
-            jf = open("eNzymER_%s.json" % runname, "w", encoding="utf-8")#./TrainedModels/
+            jf = open(f"SciBertModels_{self.run_id}/eNzymER_{runname}.json", "w", encoding="utf-8")#./TrainedModels/
         json.dump(outjo, jf)
         jf.close()
 
@@ -288,7 +283,7 @@ class eNzymER(object):
 
         # OK, start actually training
         # use the length of token to split into different batch
-        for epoch in range(10):
+        for epoch in range(n_epochs):
             print("Epoch", epoch, "start at", datetime.now(), file=sys.stderr)
 
             # Train in batches of different sizes
@@ -347,7 +342,7 @@ class eNzymER(object):
                     history = model.fit([tx_id, attention_mask,tx2], ty, verbose=0, epochs=1)
                     
                     # test for the last epoch
-                    if epoch == 10:
+                    if epoch == (n_epochs - 1):
                         Y = model.predict([tx_id, attention_mask,tx2])
                         for i in range(len(Y[0])):
                             x = np.argmax(Y[0][i])
@@ -365,6 +360,7 @@ class eNzymER(object):
                         totr += r * size * batch_size
                         totf1 += f1 * size * batch_size
                         div9 += size * batch_size
+                        # NOTE: change div9 name to div_fin_epoch
                     # verbose=0 close all the output display.
                     div += size * batch_size
                     # loss and accuracy is obtain by mean method. 
@@ -379,10 +375,11 @@ class eNzymER(object):
                     est_sec = int(estimate_time % 60)
 
             print("Trained at", datetime.now(), "Loss", totloss / div, "Accuracy", totacc / div, file=sys.stderr)
-            if self.wdEmbed == "biobert":
-                model.save_weights("./BioBertModels/epoch_%s_%s_weights" % (epoch, runname))
-            else:
-                model.save_weights("./SciBertModels/epoch_%s_%s_weights" % (epoch, runname))
+            if epoch in [n_epochs-1]:
+                if self.wdEmbed == "biobert":
+                    model.save_weights(f"./BioBertModels_{self.run_id}/epoch_{epoch}_{runname}_weights")
+                else:
+                    model.save_weights(f"./SciBertModels_{self.run_id}/epoch_{epoch}_{runname}_weights")
         print('\n precision: {}; f1-score: {}; recall: {}'.format(totp/div9, totf1/div9, totr/div9),flush=True)
 
     def load(self, json_file, model_path):
@@ -468,10 +465,13 @@ class eNzymER(object):
 
         sizes = list(train_l_d)
         batch_size = 4
+        # MW
         totp = 0
         totr = 0
         totf1 = 0
         div = 0
+        # AV/JMP
+        tn, fp, fn, tp = 0, 0, 0, 0
         for size in sizes:
             if size == 1 or size >= 254:
                 continue
@@ -500,17 +500,51 @@ class eNzymER(object):
                         else:
                             Y[0][i][j] = int(0)
                 
+                # AV/JMP
+                n_samples = len(Y[0])
+                n_classes = 5
+                Y2 = Y
+                ty2 = ty
+                # compare SBIE [index 0] vs O [index 1]
+                for i in range(n_samples):
+                    for j in range(n_classes):
+                        if (Y2[0][i][j] == 1) and (j != 1):
+                            Y2[0][i][0] = int(1)
+                            Y2[0][i][j] = int(0)
+                        if (ty2[0][i][j] == 1) and (j != 1):
+                            ty2[0][i][0] = int(1)
+                            ty2[0][i][j] = int(0)
+                
                 a = 'weighted'
-                p = precision_score(ty[0], np.array(Y[0], dtype = int), average = a)
-                f1 = f1_score(ty[0], np.array(Y[0], dtype = int), average = a)
-                r = recall_score(ty[0], np.array(Y[0], dtype = int), average = a)
+                #p = precision_score(ty[0], np.array(Y[0], dtype = int), average = a, zero_division=0.0)
+                #f1 = f1_score(ty[0], np.array(Y[0], dtype = int), average = a, zero_division=0.0)
+                #r = recall_score(ty[0], np.array(Y[0], dtype = int), average = a, zero_division=0.0)
+                p = precision_score(ty2[0,:,:2], np.array(Y2[0,:,:2], dtype = int), average = a, zero_division=0.0)
+                f1 = f1_score(ty2[0,:,:2], np.array(Y2[0,:,:2], dtype = int), average = a, zero_division=0.0)
+                r = recall_score(ty2[0,:,:2], np.array(Y2[0,:,:2], dtype = int), average = a, zero_division=0.0)
+                cm = confusion_matrix(ty2[0,:,0], np.array(Y2[0,:,0], dtype = int), labels=[0, 1])
+                cr = classification_report(ty2[0,:,0], np.array(Y2[0,:,0], dtype = int))
+                tn0, fp0, fn0, tp0 = cm.ravel()
 
+                # MW
                 totp += p * size * batch_size
                 totr += r * size * batch_size
                 totf1 += f1 * size * batch_size
                 div += size * batch_size
+
+                # AV/JMP
+                tn += tn0
+                fp += fp0
+                fn += fn0
+                tp += tp0
                 
-        print('\n precision: {}; f1-score: {}; recall: {}'.format(totp/div, totf1/div, totr/div))
+        #print('\n precision: {}; f1-score: {}; recall: {}'.format(totp/div, totf1/div, totr/div))
+        prec = tp/(tp+fp)
+        rec = tp/(tp+fn)
+        f1s = 2*prec*rec/(prec+rec)
+        print('\n precision: {}; f1-score: {}; recall: {}'.format(prec, f1s, rec))
+
+        return ty2, Y2, tn, fp, fn, tp
         
 
     def process(self, text,threshold=0.5):
