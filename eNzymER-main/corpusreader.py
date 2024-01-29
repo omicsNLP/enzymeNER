@@ -51,8 +51,7 @@ class CorpusReader(object):
             'corpus', 'section', 'text'], encoding="utf-8-sig")
         annot_df = pd.read_csv(annot_file, encoding="utf-8-sig", sep='\t',
                                names=['corpus', 'section',  'start', 'end', 'metabolite']) 
-        ### TODO: change to enzyme
-
+        
         print('Splitting dataset into train:test=0.85:0.15 with random seed {}...'.format(seed))
         corpus_list = list(
             pd.Series(list(set(corpus_df.corpus))).sample(frac=0.85))
