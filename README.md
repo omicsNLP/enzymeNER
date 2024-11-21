@@ -1,8 +1,9 @@
 # enzymeNER
-The enzymeNER contains four deep learning (DL) based models for named-entity recognition (NER) of enzyme which can be trained on the provided corpus for enzyme extraction from inputs. These DL models are based on [TABoLiSTM](https://github.com/omicsNLP/MetaboliteNER) (below) and fine-tuned models from Huggingface (see fine-tuned folder). A newly designed Annotation Pipeline is also included to automatically labelling enzyme entities in output files from [Auto-CORPus](https://github.com/omicsNLP/Auto-CORPus). bioRxiv paper [here](https://doi.org/10.1101/2023.06.23.546229).
+The enzymeNER contains four deep learning (DL) based models for named-entity recognition (NER) of enzyme which can be trained on the provided corpus for enzyme extraction from inputs. These DL models are based on [TABoLiSTM](https://github.com/omicsNLP/MetaboliteNER) (below) and fine-tuned models from Huggingface (see fine-tuned folder). A newly designed Annotation Pipeline is also included to automatically labelling enzyme entities in output files from [Auto-CORPus](https://github.com/omicsNLP/Auto-CORPus). See peer-reviewed paper in JPR [here](https://doi.org/10.1021/acs.jproteome.3c00367).
 
 [![DOI](https://zenodo.org/badge/418439604.svg)](https://zenodo.org/doi/10.5281/zenodo.10581586)
 [![bioRxiv_DOI:10.1101/2023.06.23.546229](http://img.shields.io/badge/bioRxiv_DOI-10.1101/2023.06.23.546229-BE2536.svg)](https://doi.org/10.1101/2023.06.23.546229)
+[![DOI:10.1021/acs.jproteome.3c00367](http://img.shields.io/badge/DOI-10.1021/acs.jproteome.3c00367-F0CC38.svg)](https://doi.org/10.1021/acs.jproteome.3c00367)
 
 ## Installation dependence
 | Name | Version |
