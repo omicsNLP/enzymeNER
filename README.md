@@ -4,6 +4,7 @@ The enzymeNER contains four deep learning (DL) based models for named-entity rec
 [![DOI](https://zenodo.org/badge/418439604.svg)](https://zenodo.org/doi/10.5281/zenodo.10581586)
 [![bioRxiv_DOI:10.1101/2023.06.23.546229](http://img.shields.io/badge/bioRxiv_DOI-10.1101/2023.06.23.546229-BE2536.svg)](https://doi.org/10.1101/2023.06.23.546229)
 [![DOI:10.1021/acs.jproteome.3c00367](http://img.shields.io/badge/DOI-10.1021/acs.jproteome.3c00367-F0CC38.svg)](https://doi.org/10.1021/acs.jproteome.3c00367)
+[![CoDiet](https://img.shields.io/badge/used_by:_%F0%9F%8D%8E_CoDiet-5AA764)](https://www.codiet.eu)
 
 ## Installation dependence
 | Name | Version |
