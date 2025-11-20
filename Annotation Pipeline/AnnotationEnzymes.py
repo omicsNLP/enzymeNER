@@ -169,7 +169,7 @@ def part_match(text, keyword, search_list):  # search using "re"--before and aft
                     for item in search_list:
                         parts = item.split()
                         for part in parts:
-                            if part == word_before and not re.match('\d+', word_before):
+                            if part == word_before and not re.match(r'\d+', word_before):
                                 entity = word_before + ' ' + entity
                                 if entity[0] in end_word:
                                     entity = entity[1:]
@@ -352,8 +352,7 @@ def annotate_corpus(ider, entity, offset, text, section):
         dict_entities[entity] = 0
     else:
         dict_entities[entity] += 1
-    tmp = entity.replace('\\', '\\\\\\').replace('(', '\(').replace(')', '\)').replace(
-        '[', '\[').replace('{', '\{').replace('+', '\+').replace('*', '\*')
+    tmp = (entity.replace('\\', '\\\\\\').replace('(', r'\(').replace(')', r'\)').replace('[', r'\[').replace('{', r'\{').replace('+', r'\+').replace('*', r'\*'))
     #print (entity)
     #print (tmp)
     positions = [item.start()
@@ -522,3 +521,4 @@ print('  {} enzymes were found via direct matching to the KEGG list.'.format(ec_
 print('  {} enyzmes were found using the keyword search.'.format(kw_num))
 print('  {} abbreviations were found.'.format(enzyme_num-ec_num-kw_num))
 # print('The average time of each file is: ' + str((timef_end-timef_start)/ file_num))
+
